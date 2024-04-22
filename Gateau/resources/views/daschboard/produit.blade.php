@@ -27,7 +27,7 @@
             <div class="h-100">
                 <div class="sidebar_logo d-flex align-items-end">
                     
-                    <a href="dashboard.php" class="nav-link text-white-50">Gateau</a>
+                    <a href="" class="nav-link text-white-50">Mon Gâteaux</a>
                     <img class="close align-self-start" src="" alt="icon">
                 </div>
 
@@ -103,15 +103,19 @@
           Ajouter un nouveau produit
         </a>
         <section >
+          @foreach ($produits as $produit )
             <div class="container py-5">
-              <div class="row justify-content-center mb-3">
+             <div class="row justify-content-center mb-3">
                 <div class="col-md-12 col-xl-10">
                   <div class="card shadow-0 border rounded-3">
+                    
                     <div class="card-body" >
                       <div class="row">
+                       
+                        @csrf
                         <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                           <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+                            <img src="{{ asset($produit->image) }}"
                               class="w-100" />
                             <a href="#!">
                               <div class="hover-overlay">
@@ -121,89 +125,42 @@
                           </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-xl-6">
-                          <h5>Titre</h5>
+                          <h5>{{$produit->name}} </h5>
                           <div class="d-flex flex-row">
                             <div class="text-danger mb-1 me-2">
                                 <p>Quantite</p>
                              </div>
-                            <span>310</span>
+                            <span>{{$produit->quantite}}</span>
                           </div>
                           <div class="mt-1 mb-0 text-muted small">
-                            <span>Categorie</span>
-                          
+                            <span>{{$produit->categorie->name}}</span>
                           </div>
                         
                           <p class="text-truncate mb-4 mb-md-0">
-                           Allllllllll description 
+                           {{$produit->description}}
                           </p>
                         </div>
                         <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                           <div class="d-flex flex-row align-items-center mb-1">
-                            <h4 class="mb-1 me-1" > Prix $13.99</h4> 
+                            <h4 class="mb-1 me-1" > Prix: {{$produit->prix}}</h4> 
                           </div>
                           <div class="d-flex flex-column mt-4">
-                            <a href="" class="text-red-600" data-toggle="modal" >Modifier</a>
-                            <a href="" class="text-red-600" data-toggle="modal" >Suprimer </a>
+                            <button href="" class="text-red-600" data-toggle="modal" >Modifier</button>
+                            <a href="/deleteproduit/{{$produit->id }}" class="text-red-600 hover:text-red-800" type="submit" >Supprimer</a>
+                            
                          </button>
                           </div>
                         </div>
                       </div>
                     </div>
+                 
                   </div>
+               
                 </div>
+                @endforeach
               </div>
-              <div class="row justify-content-center mb-3">
-                <div class="col-md-12 col-xl-10">
-                  <div class="card shadow-0 border rounded-3">
-                    <div class="card-body" >
-                      <div class="row">
-                        <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                          <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
-                              class="w-100" />
-                            <a href="#!">
-                              <div class="hover-overlay">
-                                <div class="mask" style=""></div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-md-6 col-lg-6 col-xl-6">
-                          <h5>Titre</h5>
-                          <div class="d-flex flex-row">
-                            <div class="text-danger mb-1 me-2">
-                                <p>Quantite</p>
-                             </div>
-                            <span>310</span>
-                          </div>
-                          <div class="mt-1 mb-0 text-muted small">
-                            <span>Categorie</span>
-                          
-                          </div>
-                        
-                          <p class="text-truncate mb-4 mb-md-0">
-                           Allllllllll description 
-                          </p>
-                        </div>
-                        <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                          <div class="d-flex flex-row align-items-center mb-1">
-                            <h4 class="mb-1 me-1" > Prix $13.99</h4> 
-                          </div>
-                          <div class="d-flex flex-column mt-4">
-                            <a href="" class="text-red-600" data-toggle="modal" >Modifier</a>
-                            <a href="" class="text-red-600" data-toggle="modal" >Suprimer </a>
-                         </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
+             
             </section>
-
-
-
-
         <!-- Add Modal HTML -->
         <div id="addEmployeeModal" class="modal fade">
             <div class="modal-dialog">

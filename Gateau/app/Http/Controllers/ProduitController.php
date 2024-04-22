@@ -2,40 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
+use App\Models\produit;
 use Illuminate\Http\Request;
 
 class ProduitController extends Controller
 {
     //
     public function showproduct(){
-        return view('daschboard.produit');
+        $produits = produit::all();
+
+        return view('daschboard.produit', compact('produits'));
     }
 
      public function ajoutproduit(){
-
-        return view ('daschboard.ajoutproduit');
+        $categories = Categorie::all();
+        return view ('daschboard.ajoutproduit' , compact('categories'));
     }
-    
-//      public function addproduit(Request $request){
-//         $name = $request->name;
-//         $description = $request->description;
-//         $prix = $request->prix;
-//         $categorie = $request->categorie;
-//         $image = $request->file('image');
-//         $image_name =uniqid()."-".$image->getClientOriginalName();
-//         $image->move(public_path('images'), $image_name);
+
+    public function insertproduit(Request $request){
+        
+        // $imagePath = null;
+        if ($request->hasFile('image')){
+            $imagePath = $request->file('image')->store('images');
+        }
+        
+
+        $produit = new produit();
+        $produit->name = $request->name; 
+        $produit->quantite = $request->quantite;
+        $produit->description = $request->description;
+        $produit->prix = $request->prix;
+        $produit->categorie_id = $request->categorie_id;
+        $produit->image = $imagePath;
+        $produit->save();
+        return redirect()->to('/pageproduit');
+    }
+
+    public function deleteproduit($produit){
+
+        $produit = produit::findOrFail($produit);
+        $produit->delete();
+        return redirect('/pageproduit');
+    }
 
 
 
-//         $product = new Product();
-//         $product->name = $name;
-//         $product->description = $description;
-//         $product->prix = $prix;
-//         $product->categorie_id = $categorie;
-//         $product->image = $image_name;
-//         $product->save();
-//         return redirect()->to('/page_produit');
-// }
+
+
+
+
+
+
+
+
+
+
 
 
 // public function page_updateproduit(Request $request){

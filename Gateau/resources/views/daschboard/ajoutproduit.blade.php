@@ -27,7 +27,7 @@
             <div class="h-100">
                 <div class="sidebar_logo d-flex align-items-end">
                     
-                    <a href="dashboard.php" class="nav-link text-white-50">Gateau</a>
+                    <a href="" class="nav-link text-white-50">Mon Gâteaux</a>
                     <img class="close align-self-start" src="" alt="icon">
                 </div>
 
@@ -103,7 +103,7 @@
         <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
             <div class="custom-form-border">
                 <h2 class="text-center mb-4">Pour ajouter un produit</h2>
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{route('insertproduit')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="name">Nom du produit:</label>
@@ -113,31 +113,43 @@
                         <label for="description">Description:</label>
                         <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                     </div>
+
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="prix">Prix:</label>
                             <div class="input-group">
                                 <input type="number" class="form-control" id="prix" name="prix" required>
                                 <div class="input-group-append">
-                                    <span class="input-group-text">€</span>
+                                    <span class="input-group-text">Dh</span>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-md-6 mb-3">
-                            <label for="categorie">Catégorie:</label>
-                            <select class="custom-select" id="categorie" name="categorie" required>
-                                <option value="">Sélectionnez une catégorie</option>
-                                <!-- Inclure ici les options pour les catégories -->
+                            <label for="id_ categorie">Catégorie:</label>
+                            <select class="custom-select" id="categorie" name="categorie_id" required>
+
+                                @foreach ($categories as $categorie)
+                                     <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+                                @endforeach
+
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="image">Image:</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image" name="image" required>
-                            <label class="custom-file-label" for="image">Choisir un fichier...</label>
+                    <div class="col-md-6 mb-3">
+                        <label for="prix">Quantite:</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="prix" name="quantite" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Kg</span>
+                            </div>
                         </div>
+                    </div> 
+                    <div class="mb-4">
+                        <label for="formFile" class="form-label">Image</label>
+                        <input class="form-control" name="image" type="file" id="formFile">
                     </div>
+                    <button href="/pageproduit" id="ajouterProduit" type="submit">Ajouter</button>
                      
                 </form>
             </div>

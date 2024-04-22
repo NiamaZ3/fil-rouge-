@@ -28,7 +28,7 @@
             <div class="h-100">
                 <div class="sidebar_logo d-flex align-items-end">
                     
-                    <a href="dashboard.php" class="nav-link text-white-50">Gateau</a>
+                    <a href="" class="nav-link text-white-50">Mon Gâteaux</a>
                     <img class="close align-self-start" src="" alt="icon">
                 </div>
 

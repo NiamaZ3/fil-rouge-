@@ -69,7 +69,7 @@ ul {
     max-width: 16rem;
     min-width: 16rem;
     max-height: 100vh;
-    background: #E0B29E;
+    background: #ba6a62;
     transition: all 0.35s ease-in-out;
     overflow: hidden;
 }
@@ -91,8 +91,8 @@ ul {
     margin-bottom: 2rem;
 }
 .text-red-600 {
-    color: #E0B29E; /* Cette couleur correspond à la classe text-red-600 */
-    border: 2px solid #E0B29E; /* Bordure de 2 pixels de largeur et de couleur correspondante */
+    color: #ba6a62; /* Cette couleur correspond à la classe text-red-600 */
+    border: 2px solid#ba6a62; /* Bordure de 2 pixels de largeur et de couleur correspondante */
     padding: 8px 16px; /* Rembourrage interne pour espacer le texte de la bordure */
     border-radius: 4px; /* Bordure arrondie */
     
@@ -148,6 +148,20 @@ a.sidebar_link:hover {
     width: 100%;
     background: #F7F8FC;
 }
+#ajouterProduit {
+    background-color: #ba6a62; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement à l'intérieur du bouton */
+    font-size: 16px; /* Taille du texte */
+    border: none; /* Pas de bordure */
+    cursor: pointer; /* Curseur de souris */
+    border-radius: 5px; /* Coins arrondis */
+}
+
+/* Effet de survol */
+#ajouterProduit:hover {
+    background-color: #ba6a62; /* Couleur de fond au survol */
+}
 
 .agent {
     margin-right: 2rem;
@@ -200,20 +214,23 @@ a.sidebar_link:hover {
 #btnAdd {
 
     margin-top: 7%;
-    display: inline-block;
-    background-color: #E0B29E; /* Couleur de fond */
+    display: flex;
+    background-color: #ba6a62; /* Couleur de fond */
     color: white; /* Couleur du texte */
     padding: 10px 20px; /* Espacement intérieur du bouton */
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    border: none; /* Suppression de la bordure */
+    border-color: #d0665d; /* Suppression de la bordure */
     border-radius: 5px; /* Coins arrondis */
     cursor: pointer;
+    width: 20%;
+    margin-left: 12px;;
+    justify-content: center;
 }
 
 #btnAdd:hover {
-    background-color: #E0B29E; /* Couleur de fond au survol */
+    background-color: #d0665d; /* Couleur de fond au survol */
 }
 
 
@@ -236,7 +253,7 @@ a.sidebar_link:hover {
 
 /* delet an edit user */
 .custom-form-border {
-    border: 2px solid #E0B29E;
+    border: 2px solid #ba6a62;
     padding: 20px;
     border-radius: 10px;
 }

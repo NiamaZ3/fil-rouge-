@@ -12,7 +12,7 @@ class CategorieController extends Controller
         $categories = Categorie::all();
         return view('daschboard.categorie',compact('categories'));
     }
-
+    
      public function insertCategorie(Request $request){
 
         $request->validate([
@@ -30,14 +30,6 @@ class CategorieController extends Controller
         $categorie->delete();
         return redirect('/pagecategorie');
     }
-
- 
-    // public function pageUpdateCategory(Request $request){
-    //     $id= $request->id;
-    //     $getcategories = new Categorie();
-    //     $category = $getcategories->find($id);
-    //     return view ('update.categorie' , compact('categorie'));
-    // }
 
     public function updatecategorie(Request $request, $id){
  

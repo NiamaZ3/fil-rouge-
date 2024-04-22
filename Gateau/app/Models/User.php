@@ -19,8 +19,20 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'ville',
+        'tele',
         'password',
+        'id_role'
+
     ];
+    
+    public function panier()
+    {
+        return $this->belongsTo(panier::class);
+    }
+
+
+    protected $table = 'user';
 
     /**
      * The attributes that should be hidden for serialization.

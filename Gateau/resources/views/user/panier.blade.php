@@ -30,6 +30,7 @@
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
+  
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a href="" class="text-decoration-none">
@@ -50,11 +51,11 @@
             </div>
             <div class="col-lg-3 col-6 text-right">
                 
-                    <a href="/pagelogin" class="btn border" >Login</a>
-                
-                    <a href="/pageregister" class="btn border">Register</a>
-                    </div>
-            </div>
+                <a href="/pagelogin" class="btn border" >Login</a>
+            
+                <a href="/pageregister" class="btn border">Register</a>
+                </div>
+        </div>
         </div>
     </div>
     <!-- Topbar End -->
@@ -63,10 +64,7 @@
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
-              
-                </nav>
-            </div>
+            
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
@@ -77,11 +75,11 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="/showindex" class="nav-item nav-link">Home</a>
-                            <a href="/boutique" class="nav-item nav-link">E-Boutique</a>
-                            <a href="detail.html" class="nav-item nav-link active">Shop Detail</a>
+                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="shop.html" class="nav-item nav-link">Shop</a>
+                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
                                     <a href="cart.html" class="dropdown-item">Shopping Cart</a>
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
@@ -89,7 +87,10 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-                      
+                        {{-- <div class="navbar-nav ml-auto py-0">
+                            <a href="" class="nav-item nav-link">Login</a>
+                            <a href="" class="nav-item nav-link">Register</a>
+                        </div> --}}
                     </div>
                 </nav>
             </div>
@@ -97,78 +98,67 @@
     </div>
     <!-- Navbar End -->
 
-    <!-- Shop Detail Start -->
-    <div class="container-fluid py-5">
+
+    
+
+
+    <!-- Cart Start -->
+    <div class="container-fluid pt-5">
         <div class="row px-xl-5">
-            <div class="col-lg-5 pb-5">
-               
-                <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                                         
-                    <div class="carousel-inner border">
-                        <div class="carousel-item active">
-                            <img class="w-100 h-100" src="{{ asset($produit->image) }}" alt="Image">
-                        </div>
-                     </div>
-                    {{-- <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                        <i class="fa fa-2x fa-angle-left text-dark"></i>
-                    </a>
-                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                        <i class="fa fa-2x fa-angle-right text-dark"></i>
-                    </a> --}}
-                </div>
+            <div class="col-lg-8 table-responsive mb-5">
+                <table class="table table-bordered text-center mb-0">
+                    <thead class="bg-secondary text-dark">
+                        <tr>
+                            <th>Nom de produit </th>
+                            <th>Prix</th>
+                            <th>Quantitté</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        @foreach ( $panier as $pn )                            
+                        <tr>
+                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;">{{$pn->name}}</td>
+                            <td class="align-middle">{{$pn->prix}}</td>
+                            <td class="align-middle">{{$pn->quantite}} KG</td>
+                            <td class="align-middle">{{$pn->quantite * $pn->prix}} DH</td>
+                            <td class="align-middle">
+                            </tr>
+                        @endforeach
+                             
+                    </tbody>
+                </table>
             </div>
-
-            <div class="col-lg-7 pb-5">
-                <h3 class="font-weight-semi-bold"> Nom: {{$produit->name}}</h3>
-                <div class="d-flex mb-3">
-                    <small class="pt-1"> Catégorie: {{$produit->categorie->name}} </small>
-                </div>
-                <h3 class="font-weight-semi-bold mb-4">Prix: {{$produit->prix}} DH </h3>
-                <p class="mb-4"> Description : {{$produit->description}}</p>
-              
+            <div class="col-lg-4">
                
-
-                  {{----------- fin partie de quantite--------------  --}}
-                <div class="d-flex align-items-center mb-4 pt-2">
-                 <span class="btn btn-primary px-3" href="" id="btnAjoutP" ><i class="fa fa-shopping-cart mr-1" type="submit"></i> Ajouter au panier </span>
-                </div>
-                  {{-- ----------partie de quantite--------------  --}}
-               
-                <div class="d-flex pt-2">
-                    <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
-                    <div class="d-inline-flex">
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
+                <div class="card border-secondary mb-5">
+                    <div class="card-header bg-secondary border-0">
+                        <h4 class="font-weight-semi-bold m-0">Panier</h4>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row px-xl-5">
-            <div class="col">
-                <div class="nav nav-tabs justify-content-center border-secondary mb-4">
-                    <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="tab-pane-1">
-                        <h4 class="mb-3">La description du produit :</h4>
-                        <p>{{$produit->description}}.</p>
-                       </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3 pt-1">
+                            <h6 class="font-weight-medium">prix total</h6>
+                            <h6 class="font-weight-medium">$150</h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Prix de livraison</h6>
+                            <h6 class="font-weight-medium">$10</h6>
+                        </div>
+                    </div>
+                    <div class="card-footer border-secondary bg-transparent">
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5 class="font-weight-bold">Total</h5>
+                            <h5 class="font-weight-bold">$160</h5>
+                        </div>
+                        <button class="btn btn-block btn-primary my-3 py-3">Valider la commande</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Shop Detail End -->
+    <!-- Cart End -->
+
+
     <!-- Footer Start -->
     <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
@@ -215,36 +205,7 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-{{-- ----------model pour ajouter quantite--------- --}}
-<div id="addquantiteeModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-           
-            <form action="/ajoutpanier" method="post">
-                @csrf
 
-                <input type="hidden" value="{{$produit->id}}" name="produit_id">
-
-                <div class="modal-header">						
-                    <h4 class="modal-title">Ajouter Votre quantité:</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">					
-                    <div class="form-group" >
-                        <label for="quantity" style="font-weight: bold; color: #ba6a62;">Quantité par Kg: </label>
-                        {{-- <input type="text" name="name" class="form-control" required> --}}
-                        <input type="" id="quantite" name="quantite" value="1" min="1" style="border: 2px solid #ba6a62; padding: 5px; border-radius: 5px;">
-                    </div>		
-                </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-success" value="Valider">
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-{{-- ---------- fin model pour ajouter quantite--------- --}}
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -258,13 +219,6 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script>
-        document.getElementById("btnAjoutP").addEventListener("click", function() {
-            var myModal = new bootstrap.Modal(document.getElementById('addquantiteeModal'));
-            myModal.show();
-          });
-
-     </script>
 </body>
 
 </html>
