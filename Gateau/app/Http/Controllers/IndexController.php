@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\panier;
 use App\Models\produit;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class IndexController extends Controller
 
     public function boutique(){
          $produits = produit::all();
-        return view('user.boutique', compact('produits'));
+         $categories=Categorie::all();
+        return view('user.boutique', compact('produits','categories'));
  }
   
  public function showdetail($id){
@@ -24,6 +26,9 @@ class IndexController extends Controller
     $produit = produit::find($id);
     return view('user.detail', compact('produit'));
  }
+
+
+ 
    public function panier(){
       $user_id = 2 ; 
 

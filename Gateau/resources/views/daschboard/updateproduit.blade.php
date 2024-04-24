@@ -99,119 +99,66 @@
                 </div>
             </nav>
         {{-------------------tableau --------------------}}
-        <a href="/ajoutproduit" id="btnAdd" title="Ajouter Une Produit">
-          Ajouter un nouveau produit
-        </a>
-        <section >
-          @foreach ($produits as $produit )
-            <div class="container py-5">
-             <div class="row justify-content-center mb-3">
-                <div class="col-md-12 col-xl-10">
-                  <div class="card shadow-0 border rounded-3">
-                    
-                    <div class="card-body" >
-                      <div class="row">
-                       
-                        @csrf
-                        <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                          <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                            <img src="{{ asset($produit->image) }}"
-                              class="w-100" />
-                            <a href="#!">
-                              <div class="hover-overlay">
-                                <div class="mask" style=""></div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="col-md-6 col-lg-6 col-xl-6">
-                          <h5>{{$produit->name}} </h5>
-                          <div class="d-flex flex-row">
-                            <div class="text-danger mb-1 me-2">
-                                <p>Quantite</p>
-                             </div>
-                            <span>{{$produit->quantite}}</span>
-                          </div>
-                          <div class="mt-1 mb-0 text-muted small">
-                            <span>{{$produit->categorie->name}}</span>
-                          </div>
-                        
-                          <p class="text-truncate mb-4 mb-md-0">
-                           {{$produit->description}}
-                          </p>
-                        </div>
-                        <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                          <div class="d-flex flex-row align-items-center mb-1">
-                            <h4 class="mb-1 me-1" > Prix: {{$produit->prix}}</h4> 
-                          </div>
-                          <div class="d-flex flex-column mt-4">
-                            <a href="/pageupdate/{{$produit->id}}" class="text-red-600" >Modifier</a>
-                            <a href="/deleteproduit/{{$produit->id }}" class="text-red-600 hover:text-red-800" type="submit" >Supprimer</a>
-                        </button>
-                          </div>
-                        </div>
-                      </div>
+       
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="custom-form-border">
+                <h2 class="text-center mb-4">Modifer votre  produit</h2>
+                <form action="/updatproduit" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="text" class="form-control"  name="produit_id" value="{{$produit->id}}" hidden>
+
+                    <div class="form-group">
+                        <label for="name">Nom du produit:</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{$produit->name}}" required>
                     </div>
-                 
-                  </div>
-               
-                </div>
-                @endforeach
-              </div>
-             
-            </section>
-        <!-- Add Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="addcategorie" method="post">
-                        @csrf
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required>{{$produit->description}}</textarea>
+                    </div>
 
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Add Categorie</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group" >
-                                <label>Name</label>
-                                <input type="text" name="name" class="form-control" required>
-                            </div>		
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Edit Modal HTML -->
-        <div id="editEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Edit categorie</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" required>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="prix">Prix:</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="prix" name="prix" value="{{$produit->prix}}" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Dh</span>
+                                </div>
                             </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-info" value="Save">
                         </div>
-                    </form>
-                </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="id_ categorie">Catégorie:</label>
+                            <select class="custom-select" id="categorie" name="categorie_id"  value="" required>
+
+                                @foreach($categories as $categorie)
+                    <option value="{{ $categorie->id }}" @if($categorie->id == $produit->id_categorie) selected @endif>
+                        {{ $categorie->name }}
+                    </option>
+                    @endforeach
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="prix">Quantite:</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control"  name="quantite" value="{{$produit->quantite}}" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Kg</span>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="mb-4">
+                        <label for="formFile" class="form-label">Image</label>
+                        <input class="form-control" name="image" type="file" id="formFile" {{$produit->image}}>
+                    </div>
+                    <button href="/pageproduit" id="ajouterProduit" type="submit" >Modifier</button>
+                     
+                </form>
             </div>
         </div>
-       </div>
-      
-        </body>
-        </html>
-
+        
         {{-------------------tableau --------------------}}  
         </div>
     </div>

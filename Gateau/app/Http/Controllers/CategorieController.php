@@ -12,7 +12,18 @@ class CategorieController extends Controller
         $categories = Categorie::all();
         return view('daschboard.categorie',compact('categories'));
     }
+
+    public function showcatinproduit(){
+        $categories = Categorie::all();
+        return view('daschboard.produit',compact('categories'));
+    }
     
+    public function showForm(){
+        $categories = Categorie::all();
+        return view('user.boutique', compact('categories'));
+    }
+    
+
      public function insertCategorie(Request $request){
 
         $request->validate([
@@ -40,5 +51,6 @@ class CategorieController extends Controller
         $categorie->update();
         return redirect('/pagecategorie');    
     }
+
 
 }

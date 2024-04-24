@@ -10,4 +10,5 @@ class StatiController extends Controller
     public function showstatistique(){
         return view('daschboard.statistique');
     }
+    
 }

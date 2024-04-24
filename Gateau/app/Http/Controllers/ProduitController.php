@@ -11,14 +11,24 @@ class ProduitController extends Controller
     //
     public function showproduct(){
         $produits = produit::all();
+        $categories = Categorie::all();
 
-        return view('daschboard.produit', compact('produits'));
+        return view('daschboard.produit', compact('produits', 'categories'));
     }
 
      public function ajoutproduit(){
         $categories = Categorie::all();
         return view ('daschboard.ajoutproduit' , compact('categories'));
     }
+
+
+    public function pageupdate($idproduit){
+        $produit = produit::findorFail($idproduit);
+        $categories = Categorie::all();
+        return view('daschboard.updateproduit',compact('produit','categories'));
+    }
+
+
 
     public function insertproduit(Request $request){
         
@@ -49,37 +59,55 @@ class ProduitController extends Controller
 
 
 
+    public function updateproduit(Request $request)
+     {
+        
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required|string',
+            'prix' => 'required',
+            'categorie_id' => 'required',
+            'quantite' => 'required',
+            'produit_id'=>'required',
+             ]);
+             $produit = produit::find($request->produit_id);
+             $produit->name = $request->name;
+             $produit->description = $request->description;
+             $produit->prix = $request->prix;
+             $produit->categorie_id = $request->categorie_id;
+             $produit->quantite = $request->quantite;
+
+             if ($request->hasFile('image')){
+                $imagePath = $request->file('image')->store('images');
+                $produit->image = $imagePath;
+
+            }
+              $produit->update();
+         return redirect('/pageproduit')->with('success', 'Event added successfully.');
+    }
 
 
-
-
-
-
-
-
-
-
-
-// public function page_updateproduit(Request $request){
-//     $id = $request->id;
-//     $getproduct = new Product();
     
-//     $product = $getproduct->find($id);
-//     // $getcategory = new Category();
-//     $categories = $getcategorie->all();
-//     return view('Update.update-produit', compact('product' , 'categories'));
-// }
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        
+        $produits = produit::where('name', 'like', '%'.$query.'%')->get();
+        
+        return view('user.search', compact('produits'));
+    }
+  
 
-// public function updateproduit(Request $request){
-//     $id = $request->id;
-//     $name = $request->name;
-//     $description = $request->description;
-//     $prix = $request->prix;
-//     $category = $request->category;
-//     $image = $request->file('image');
-    // if(!empty($image)){
-    //     $image_name = uniqid() . "-" . $image->getClientOriginalName();
-    //     $image->move(public_path('images'), $image_name);
-    // }
+    public function filter(Request $request)
+    {
+        $selectedCategory = $request->input('categories');
+
+        if ($selectedCategory) {
+            $products = produit::where('id_categorie', $selectedCategory)->get();
+        } else {
+            $products = produit::all();
+        }
+        return view('filter', compact('products'));
+    }
  }
 

@@ -15,6 +15,7 @@ class produit extends Model
         'prix',
         'categorie_id'
  ];
+ 
 
     public function categorie()
     {
