@@ -100,7 +100,7 @@
 
 
     <div class="input-group-append mx-5" style="width: 50%"  >
-        <input  type="text" class="form-control main m-0" id="searchCours" placeholder="Search...">
+        <input type="text" class="form-control main m-0" id="searchgateau" placeholder="Search...">
         <span class="input-group-text bg-transparent text-primary">
             <i class="fa fa-search"></i>
         </span>
@@ -111,7 +111,6 @@
           <div class="col-lg-3 col-md-12">
                 <!-- Price Start -->
                 <div class="border-bottom mb-4 pb-4">
-                    <form action="{{ route('produits.filter') }}" method="GET">
                       
                     <div class="d-flex">
                     <h5 class="font-weight-semi-bold mb-4">Filtrer par categorie</h5>
@@ -119,12 +118,11 @@
                 <ul class="category-list m-0 p-0">
                     @foreach ($categories as $categorie)
 
-                    <li><a href="">{{ $categorie->name }}<span class="float-right">
-                         <input type="radio" name="categorie" value="{{ $categorie->name }}"></span></a></li>
+                    <li><a href="/filter/{{$categorie->id}}">{{ $categorie->name }}<span class="float-right">
+                        </a></li>
                     @endforeach
 
                 </ul>
-            </form>
             </div>
                 <!-- Price End -->
 
@@ -384,24 +382,21 @@
     <script src="js/main.js"></script>
 
     <script>
-        const searchitem = document.getElementById('searchCours');
-        console.log(searchitem);
-        const searchCours = document.getElementById('searchResults');
-        fetchSearchItemResults();
-
-        searchitem.addEventListener("keyup", function() {
-            console.log('hgj');
+        const searchitem = document.getElementById('searchgateau');
+        const searchgateau = document.getElementById('searchResults');
+    
+        searchitem.addEventListener("keyup", function() { 
             fetchSearchItemResults();
         });
-
+    
         function fetchSearchItemResults() {
             console.log('Fetching results');
             fetch(`/searchItem?search=${searchitem.value}`)
                 .then(res => res.text())
                 .then(data => {
-                    searchCours.innerHTML = data;
+                    searchgateau.innerHTML = data;
                 })
-                .catch(error => console.error('Erreur lors de la recherche:', error));
+                .catch(error => console.error('Error while fetching results:', error));
         }
     </script>
 </body>

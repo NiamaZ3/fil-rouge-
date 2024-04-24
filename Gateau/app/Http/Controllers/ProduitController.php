@@ -98,16 +98,14 @@ class ProduitController extends Controller
     }
   
 
-    public function filter(Request $request)
-    {
-        $selectedCategory = $request->input('categories');
+    public function filter(Request $request , $id)
 
-        if ($selectedCategory) {
-            $products = produit::where('id_categorie', $selectedCategory)->get();
-        } else {
-            $products = produit::all();
-        }
-        return view('filter', compact('products'));
+    {
+        
+        $produits = produit::where('categorie_id' , $id)->get();
+        // dd($produits);
+        $categories = Categorie::all();
+        return view('user.boutique', compact('produits' , 'categories'));
     }
  }
 

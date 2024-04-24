@@ -59,6 +59,6 @@ Route::post('/rechercher-produit', [ProduitController::class, 'searchProduit'])-
 Route::get('/searchItem', [ProduitController::class, 'search']);
 //route pour recuperer les categorie dans forme
 Route::get('/categories', [ProduitController::class, 'showForm']);
-Route::post('/filter', [ProduitController::class, 'filter'])->name('produits.filter');
+Route::get('/filter/{id}', [ProduitController::class, 'filter']);
 
 
