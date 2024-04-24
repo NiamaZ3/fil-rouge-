@@ -14,14 +14,14 @@ class PanierController extends Controller
         return view('user.panier', compact('paniers'));
      }
 
-    public function ajoutpanier(Request  $request){ 
+    // public function ajoutpanier(Request  $request){ 
 
-        $panier = new panier();
-        $panier->user_id = 2;
-        $panier->produit_id = $request->produit_id;
-        $panier->quantite = $request->quantite;
-        $panier->save();
-        return redirect('/panier');
-       }
+    //     $panier = new panier();
+    //     $panier->user_id = 2;
+    //     $panier->produit_id = $request->produit_id;
+    //     $panier->quantite = $request->quantite;
+    //     $panier->save();
+    //     return redirect('/panier');
+    //    }
 
 }
