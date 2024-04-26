@@ -35,12 +35,7 @@
                   <li class="sidebar_item active" style="width: 100%;">
                       <a href="/pageproduit" class="sidebar_link">Produit</a>
                   </li>
-                  <li class="sidebar_item">
-                          <a href="/pagecommande" class="sidebar_link">Tous les Commandes</a>
-                   </li>
-                   <li class="sidebar_item">
-                      <a href="/pagecommande" class="sidebar_link">Les Commandes Valider</a>
-               </li>
+                 
                   <li class="sidebar_item">
                       <a href="pagecategorie" class="sidebar_link">Categorie </a>
                   </li>

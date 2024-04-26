@@ -62,3 +62,4 @@ Route::get('/categories', [ProduitController::class, 'showForm']);
 Route::get('/filter/{id}', [ProduitController::class, 'filter']);
 
 
+

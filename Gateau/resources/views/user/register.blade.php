@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>EShopper - Bootstrap Shop Template</title>
+    <title>Mon gâteaux</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -110,11 +110,11 @@
                         </div>
                       
       
-                        {{-- <div class="form-check d-flex justify-content-center mb-5">
+                        <div class="form-check d-flex justify-content-center mb-5">
                           <label class="form-check-label" for="form2Example3">
                            <a href="/pagelogin">login</a>
                           </label>
-                        </div> --}}
+                        </div>
       
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Register</button>
@@ -124,8 +124,7 @@
                     </div>
                     <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
       
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                        class="img-fluid" alt="Sample image">
+                      <img src="./../images/login.jpg" class="img-fluid" alt="Sample image" style="border-radius: 50px;">
                     </div>
                   </div>
                 </div>
