@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
+use App\Models\produit;
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
@@ -38,7 +39,11 @@ class CategorieController extends Controller
     public function deletecategorie($categorie){
 
         $categorie = Categorie::findOrFail($categorie);
+        $id= $categorie->id;
+        produit::where('categorie_id', $id)->delete();
+        
         $categorie->delete();
+
         return redirect('/pagecategorie');
     }
 

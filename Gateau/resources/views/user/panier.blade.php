@@ -38,25 +38,20 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                {{-- <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </form> --}}
+             
             </div>
             <div class="col-lg-3 col-6 text-right">
-                
+                {{Auth::user()->name}}
+                @guest
                 <a href="/pagelogin" class="btn border" >Login</a>
             
                 <a href="/pageregister" class="btn border">Register</a>
                 </div>
+                @else
+                <a href="/logout">LogOut</a>
+                @endguest
         </div>
-        </div>
+       
     </div>
     <!-- Topbar End -->
 
@@ -78,19 +73,10 @@
                             <a href="/showindex" class="nav-item nav-link">Home</a>
                             <a href="/boutique" class="nav-item nav-link">E-Boutique</a>
                             <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
-                            {{-- <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div> --}}
+                          
                             <a href="/panier" class="nav-item nav-link">Panier</a>
                         </div>
-                        {{-- <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
-                        </div> --}}
+                     
                     </div>
                 </nav>
             </div>
@@ -113,22 +99,28 @@
                             <th>Prix</th>
                             <th>Quantitté</th>
                             <th>Total</th>
+                            <th>Suprimer</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle">
-                        @foreach ( $panier as $pn )                            
+                       
+                        @foreach ( $panier as $pn )  
+                             @if(Auth::check() && Auth::user()->id === $panier->user_id)   
+                        @csrf                       
                         <tr>
                             <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;">{{$pn->name}}</td>
                             <td class="align-middle">{{$pn->prix}}</td>
                             <td class="align-middle">{{$pn->quantite}} KG</td>
                             <td class="align-middle">{{$pn->quantite * $pn->prix}} DH</td>
-                            <td class="align-middle">
-                            </tr>
+                            <td class="align-middle"><a  href="/retirPanier/{{$pn->id }}" class="text-red-600 hover:text-red-800" >Supprimer</a></td>
+                          </tr>
+                             @endif
                         @endforeach
                              
                     </tbody>
                 </table>
             </div>
+        
             <div class="col-lg-4">
                
                 <div class="card border-secondary mb-5">

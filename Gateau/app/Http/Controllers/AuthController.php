@@ -18,6 +18,13 @@ class AuthController extends Controller
             return view('user.login');
         }
 
+        public function logout(){
+            return view('user.login');
+        }
+
+
+
+
         public function register(Request $request){
            
         $request->validate([
@@ -59,6 +66,8 @@ class AuthController extends Controller
             }
     //   return back()->with('error', 'Error Email or Password');
         }
+
+
    }
 
 

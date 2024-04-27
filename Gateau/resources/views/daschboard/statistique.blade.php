@@ -108,8 +108,8 @@
                 <div class="card-body p-4">
                   <div class="row">
                     <div class="col-8">
-                      <h5 class="card-title widget-card-title mb-3">Les produits :</h5>
-                      <h4 class="card-subtitle text-body-secondary m-0">Nombre de produit</h4>
+                      <h5 class="card-title widget-card-title mb-3">Nombre des produits :</h5>
+                      <h4 class="card-subtitle text-body-secondary m-0">{{$totalproduit}}</h4>
                     </div>
                     <div class="col-4">
                       <div class="d-flex justify-content-end">
@@ -130,8 +130,8 @@
                   <div class="card-body p-4">
                     <div class="row">
                       <div class="col-8">
-                        <h5 class="card-title widget-card-title mb-3">Les commandes  : </h5>
-                        <h4 class="card-subtitle text-body-secondary m-0">Nombre de commande </h4>
+                        <h5 class="card-title widget-card-title mb-3">Nombre d'utilisateurs : </h5>
+                        <h4 class="card-subtitle text-body-secondary m-0">{{$totalusers}}</h4>
                       </div>
                       <div class="col-4">
                         <div class="d-flex justify-content-end">
@@ -152,8 +152,8 @@
                   <div class="card-body p-4">
                     <div class="row">
                       <div class="col-8">
-                        <h5 class="card-title widget-card-title mb-3">Les catégories :</h5>
-                        <h4 class="card-subtitle text-body-secondary m-0">Nombre de categories</h4>
+                        <h5 class="card-title widget-card-title mb-3"> Nombre des catégories :</h5>
+                        <h4 class="card-subtitle text-body-secondary m-0">{{$totalcategorie}}</h4>
                       </div>
                       <div class="col-4">
                         <div class="d-flex justify-content-end">
@@ -174,8 +174,8 @@
                   <div class="card-body p-4">
                     <div class="row">
                       <div class="col-8">
-                        <h5 class="card-title widget-card-title mb-3">Les utlisateurs :</h5>
-                        <h4 class="card-subtitle text-body-secondary m-0">Nombre d'utilisateur</h4>
+                        <h5 class="card-title widget-card-title mb-3">Nombre des commandes :</h5>
+                        <h4 class="card-subtitle text-body-secondary m-0">nombre de commande</h4>
                       </div>
                       <div class="col-4">
                         <div class="d-flex justify-content-end">

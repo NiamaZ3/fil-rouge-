@@ -39,24 +39,20 @@
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
-            {{-- <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </form> --}}
+       
         </div>
         <div class="col-lg-3 col-6 text-right">
-            <a href="/pagelogin" class="btn border">Login</a>
-
+            <a> Bonjour : {{Auth::user()->name}} </a> 
+            @guest
+            <a href="/pagelogin" class="btn border" >Login</a>
+        
             <a href="/pageregister" class="btn border">Register</a>
-        </div>
+            </div>
+            @else
+            <a href="/logout" >LogOut</a>
+            @endguest
     </div>
-    </div>
+</div>
     <!-- Topbar End -->
     <!-- Navbar Start -->
     <div class="container-fluid">
@@ -113,7 +109,7 @@
                 <div class="border-bottom mb-4 pb-4">
                       
                     <div class="d-flex">
-                    <h5 class="font-weight-semi-bold mb-4">Filtrer par categorie</h5>
+                    <h5 class="font-weight-semi-bold mb-4">Chercher votre produit par categorie</h5>
                 </div>
                 <ul class="category-list m-0 p-0">
                     @foreach ($categories as $categorie)
@@ -125,82 +121,6 @@
                 </ul>
             </div>
                 <!-- Price End -->
-
-                <!-- Color Start -->
-                {{-- <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="color-all">
-                            <label class="custom-control-label" for="price-all">All Color</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-1">
-                            <label class="custom-control-label" for="color-1">Black</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-2">
-                            <label class="custom-control-label" for="color-2">White</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-3">
-                            <label class="custom-control-label" for="color-3">Red</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-4">
-                            <label class="custom-control-label" for="color-4">Blue</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="color-5">
-                            <label class="custom-control-label" for="color-5">Green</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div> --}}
-                <!-- Color End -->
-
-                <!-- Size Start -->
-                {{-- <div class="mb-5">
-                    <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="size-all">
-                            <label class="custom-control-label" for="size-all">All Size</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-1">
-                            <label class="custom-control-label" for="size-1">XS</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-2">
-                            <label class="custom-control-label" for="size-2">S</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-3">
-                            <label class="custom-control-label" for="size-3">M</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-4">
-                            <label class="custom-control-label" for="size-4">L</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="size-5">
-                            <label class="custom-control-label" for="size-5">XL</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div> --}}
-                <!-- Size End -->
             </div>
             <!-- Shop Sidebar End -->
 
@@ -211,8 +131,6 @@
                 <div class="row pb-3" id="searchResults">
                     <div class="col-12 pb-1">
                      <div class="d-flex align-items-center justify-content-between mb-4">
-                           
-
                         </div>
                     </div>
                     @foreach ($produits as $produit)
@@ -239,9 +157,7 @@
                                     <div class="card-footer d-flex justify-content-between bg-light border">
                                         <a href="/detail/{{ $produit->id }}" class="btn btn-sm text-dark p-0"><i
                                                 class="fas fa-eye text-primary mr-1"></i>Voir Detail</a>
-                                        <span href="" class="btn btn-sm text-dark p-0" id="btnAjoutP"><i
-                                                class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au
-                                            panier</span>
+                                        {{-- <span href="" class="btn btn-sm text-dark p-0" id="btnAjoutP"><i class="fas fa-shopping-cart text-primary mr-1" type="submit"></i>Ajouter au panier</span> --}}
                                     </div>
                                 </div>
 
@@ -249,27 +165,7 @@
                         </div>
                     @endforeach
 
-                    <div class="col-12 pb-1">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center mb-3">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                
                 </div>
             </div>
             <!-- Shop Product End -->
@@ -340,31 +236,7 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
     {{-- ----------model pour ajouter quantite--------- --}}
-    {{-- <div id="addquantiteeModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form action="ajoutpanier" method="POST">
-                    @csrf
-
-                    <div class="modal-header">						
-                        <h4 class="modal-title">Ajouter Votre quantité:</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">					
-                        <div class="form-group" >
-                            <label for="quantity" style="font-weight: bold; color: #ba6a62;">Quantité par Kg: </label>
-                            {{-- <input type="text" name="name" class="form-control" required> --}}
-    {{-- <input type="" id="quantite" name="quantite" value="1" min="1" style="border: 2px solid #ba6a62; padding: 5px; border-radius: 5px;">
-                        </div>		
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-success" value="Valider">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>  --}}
+   
     {{-- ---------- fin model pour ajouter quantite--------- --}}
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

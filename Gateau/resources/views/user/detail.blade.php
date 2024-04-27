@@ -49,12 +49,16 @@
                 </form> --}}
             </div>
             <div class="col-lg-3 col-6 text-right">
-                
-                    <a href="/pagelogin" class="btn border" >Login</a>
-                
-                    <a href="/pageregister" class="btn border">Register</a>
-                    </div>
-            </div>
+                {{Auth::user()->name}}
+                @guest
+                <a href="/pagelogin" class="btn border" >Login</a>
+            
+                <a href="/pageregister" class="btn border">Register</a>
+                </div>
+                @else
+                <a href="/logout">LogOut</a>
+                @endguest
+        </div>
         </div>
     </div>
     <!-- Topbar End -->
@@ -110,12 +114,7 @@
                             <img class="w-100 h-100" src="{{ asset($produit->image) }}" alt="Image">
                         </div>
                      </div>
-                    {{-- <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                        <i class="fa fa-2x fa-angle-left text-dark"></i>
-                    </a>
-                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                        <i class="fa fa-2x fa-angle-right text-dark"></i>
-                    </a> --}}
+                  
                 </div>
             </div>
 

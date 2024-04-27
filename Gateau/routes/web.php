@@ -23,7 +23,7 @@ Route::get('pageproduit',[ProduitController::class,'showproduct']);
 Route::get('pagecommande',[CommandeController::class,'showcommande']);
 Route::get('pagestati',[StatiController::class,'showstatistique']);
 //route pour recupérer les pages home
-Route::get('showindex',[IndexController::class,'showindex']);
+Route::get('/showindex',[IndexController::class,'showindex']);
 Route::get('/boutique',[IndexController::class,'boutique']);
 Route::get('/detail/{id}',[IndexController::class,'showdetail']);
 Route::get('/panier',[IndexController::class,'panier']);
@@ -60,6 +60,7 @@ Route::get('/searchItem', [ProduitController::class, 'search']);
 //route pour recuperer les categorie dans forme
 Route::get('/categories', [ProduitController::class, 'showForm']);
 Route::get('/filter/{id}', [ProduitController::class, 'filter']);
-
-
+//
+Route::get('/retirPanier/{id}',[ProduitController::class,'retirPanier']);
+Route::get('/logout',[AuthController::class,'logout']);
 

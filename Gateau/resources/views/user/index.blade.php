@@ -49,10 +49,16 @@
                 </form> --}}
             </div>
             <div class="col-lg-3 col-6 text-right">
+                {{Auth::user()->name}}
+                @guest
                 <a href="/pagelogin" class="btn border" >Login</a>
             
                 <a href="/pageregister" class="btn border">Register</a>
-            </div>
+                </div>
+                @else
+                <a href="/logout">LogOut</a>
+                @endguest
+        </div>
         </div>
     </div>
     <!-- Topbar End -->

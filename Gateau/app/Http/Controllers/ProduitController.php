@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
+use App\Models\panier;
 use App\Models\produit;
 use Illuminate\Http\Request;
 
@@ -107,5 +108,16 @@ class ProduitController extends Controller
         $categories = Categorie::all();
         return view('user.boutique', compact('produits' , 'categories'));
     }
- }
 
+
+    public function retirPanier($id)
+    {
+        $panierItem = panier::find($id);
+        // dd($panierItem );
+        if($panierItem){
+            $panierItem->delete();
+            return redirect('/panier');
+        }
+    }
+    
+}
